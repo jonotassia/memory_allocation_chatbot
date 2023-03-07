@@ -38,7 +38,7 @@ ChatLogic::~ChatLogic()
     // delete all nodes
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
-        delete *it;
+        delete it;
     }
 
     // delete all edges - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN NODES ARE DELETED
@@ -161,12 +161,12 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
                             // create new edge
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
-                            edge->SetChildNode(childNode.get());
-                            edge->SetParentNode(parentNode.get());
+                            edge->SetChildNode(childNode->get());
+                            edge->SetParentNode(parentNode->get());
                             _edges.push_back(edge.get());
 
                             // find all keywords for current node
-                            AddAllTokensToElement("KEYWORD", tokens, edge.get());
+                            AddAllTokensToElement("KEYWORD", tokens, edge);
 
                             // store reference in child node and parent node
                             (*childNode)->AddEdgeToParentNode(edge.get());
