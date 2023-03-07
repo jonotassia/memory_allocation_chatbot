@@ -166,11 +166,11 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             _edges.push_back(edge);
 
                             // find all keywords for current node
-                            AddAllTokensToElement("KEYWORD", tokens, *edge);
+                            AddAllTokensToElement("KEYWORD", tokens, &edge);
 
                             // store reference in child node and parent node
-                            *(childNode->get()).AddEdgeToParentNode(edge);
-                            *(parentNode->get()).AddEdgeToChildNode(std::move(edge));
+                            **(childNode->get())->AddEdgeToParentNode(edge);
+                            **(parentNode->get())->AddEdgeToChildNode(std::move(edge));
                         }
 
                         ////
@@ -201,7 +201,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         // search for nodes which have no incoming edges
-        if (*(it->get()).GetNumberOfParents() == 0)
+        if (**(it->get())->GetNumberOfParents() == 0)
         {
 
             if (rootNode == nullptr)
