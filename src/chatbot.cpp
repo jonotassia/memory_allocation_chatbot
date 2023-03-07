@@ -60,7 +60,7 @@ ChatBot::ChatBot(ChatBot&& source) { // Move constructor
 }  
 
 ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
-    if (source == this) {
+    if (source == *this) {
         return *this;
     }
     std::cout << "Chatbot Move Assignment Constructor \n";
