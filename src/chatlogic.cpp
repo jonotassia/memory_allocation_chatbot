@@ -36,7 +36,7 @@ ChatLogic::~ChatLogic()
     delete _chatBot;
 
     // delete all nodes
-    for (auto it = std::begin(_nodes.get()); it != std::end(_nodes.get()); ++it)
+    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         delete *it;
     }
@@ -132,7 +132,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
                         {
-                            _nodes->emplace_back(std::make_unique<GraphNode>(id));
+                            _nodes.emplace_back(std::make_unique<GraphNode>(id));
                             newNode = _nodes.end() - 1; // get iterator to last element
 
                             // add all answers to current node
@@ -161,8 +161,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
                             // create new edge
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
-                            edge->SetChildNode(*childNode);
-                            edge->SetParentNode(*parentNode);
+                            edge->SetChildNode(childNode.get());
+                            edge->SetParentNode(parentNode.get());
                             _edges.push_back(edge.get());
 
                             // find all keywords for current node
