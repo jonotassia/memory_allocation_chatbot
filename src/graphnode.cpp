@@ -10,7 +10,8 @@ GraphNode::~GraphNode()
 {
     //// STUDENT CODE
     ////
-    delete _childEdges;
+    // REMOVING: SMARTPOINTER WILL CLEAN UP ALL CHILD EDGES WHEN IT GOES OUT OF SCOPE
+    // delete _childEdges;
     ////
     //// EOF STUDENT CODE
 }
@@ -27,7 +28,8 @@ void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
 
 void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
 {
-    _childEdges.push_back(edge);
+    std::unique_ptr<GraphEdge> unq_edge = std::make_unique(*edge);
+    _childEdges.push_back(unq_edge);
 }
 
 //// STUDENT CODE

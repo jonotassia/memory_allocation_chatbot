@@ -35,7 +35,7 @@ ChatLogic::~ChatLogic()
     // delete chatbot instance
     delete _chatBot;
 
-    // delete all nodes
+    // delete all nodes - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN SMARTPOINTER GOES OUT OF SCOPE
     // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     // {
     //     delete it->get();
