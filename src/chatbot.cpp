@@ -2,6 +2,7 @@
 #include <random>
 #include <algorithm>
 #include <ctime>
+#include <memory>
 
 #include "chatlogic.h"
 #include "graphnode.h"
@@ -27,7 +28,7 @@ ChatBot::ChatBot(std::string filename)
     _rootNode = nullptr;
 
     // load image into heap memory
-    _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
+    _image = std::make_unique<wxBitmap>(filename, wxBITMAP_TYPE_PNG);
 }
 
 ChatBot::~ChatBot()
@@ -44,6 +45,37 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+
+ChatBot::ChatBot(ChatBot&& source) { // Move constructor
+    std::cout << "Chatbot Move Constructor \n";
+    
+    // Handle non-owning references
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+    this->_currentNode = source._rootNode;
+
+    // Handle owning references
+    this->_image = source._image;
+    source._image = nullptr;
+}  
+
+ChatBot::Chatbot &operator=(Chatbot&& source) {  // Move assignment constructor
+    if (source == this) {
+        return *this;
+    }
+    std::cout << "Chatbot Move Assignment Constructor \n";
+    
+    // Handle non-owning references
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+    this->_currentNode = source._rootNode;
+
+    // Handle owning references
+    this->_image = source._image;
+    source._image = nullptr;
+    
+    return *this;
+}  
 
 ////
 //// EOF STUDENT CODE
