@@ -59,7 +59,7 @@ ChatBot::ChatBot(ChatBot&& source) { // Move constructor
     source._image = nullptr;
 }  
 
-ChatBot::ChatBot &operator=(ChatBot&& source) {  // Move assignment constructor
+ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
     if (source == this) {
         return *this;
     }
