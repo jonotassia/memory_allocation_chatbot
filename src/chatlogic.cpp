@@ -198,15 +198,15 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
     // identify root node
     GraphNode *rootNode = nullptr;
-    for (auto it.get() = std::begin(_nodes); it != std::end(_nodes); ++it)
+    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         // search for nodes which have no incoming edges
-        if ((*it)->GetNumberOfParents() == 0)
+        if ((it.get())->GetNumberOfParents() == 0)
         {
 
             if (rootNode == nullptr)
             {
-                rootNode = *it; // assign current node to root
+                rootNode = it.get(); // assign current node to root
             }
             else
             {
