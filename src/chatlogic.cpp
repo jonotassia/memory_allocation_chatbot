@@ -33,7 +33,7 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    // delete _chatBot;
+    delete _chatBot;
 
     // delete all nodes - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN SMARTPOINTER GOES OUT OF SCOPE
     // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -216,8 +216,9 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(std::move(_chatBot));
+    ChatBot new_cb;
+    new_cb->SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(std::move(new_cb));
     
     ////
     //// EOF STUDENT CODE
