@@ -12,7 +12,7 @@ class ChatBot
 {
 private:
     // data handles (owned)
-    std::unique_ptr<wxBitmap> _image; // avatar image
+    wxBitmap *_image; // avatar image
 
     // data handles (not owned)
     GraphNode *_currentNode;
@@ -24,7 +24,7 @@ private:
 
     // Restrict copy function as exclusive ownership should always be maintained for some objects
     ChatBot(ChatBot& source);  // Copy constructor
-    Chatbot &operator=(ChatBot& source);  // Copy Assignment constructor
+    ChatBot &operator=(ChatBot& source);  // Copy Assignment constructor
 
 public:
     // constructors / destructors
@@ -35,7 +35,7 @@ public:
     //// STUDENT CODE
     ////
     ChatBot(ChatBot&& source);  // Move constructor
-    Chatbot &operator=(Chatbot&& source);  // Move assignment constructor
+    ChatBot &operator=(ChatBot&& source);  // Move assignment constructor
 
     ////
     //// EOF STUDENT CODE
