@@ -40,10 +40,6 @@ public:
     // constructor / destructor
     ChatLogic();
     ~ChatLogic();
-    
-    // copy constructors
-    ChatLogic(ChatLogic &source) = delete;
-    ChatLogic &operator=(ChatLogic &source) = delete;
 
     // getter / setter
     void SetPanelDialogHandle(ChatBotPanelDialog *panelDialog);
