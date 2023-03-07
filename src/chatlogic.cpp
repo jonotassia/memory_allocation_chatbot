@@ -161,16 +161,16 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
                             // create new edge
                             GraphEdge* edge = new GraphEdge(id);
-                            edge->SetChildNode(childNode->get());
-                            edge->SetParentNode(parentNode->get());
+                            edge->SetChildNode(*(childNode->get()));
+                            edge->SetParentNode(*(parentNode->get()));
                             _edges.push_back(edge);
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, edge);
 
                             // store reference in child node and parent node
-                            (*childNode).get()->AddEdgeToParentNode(edge);
-                            (*parentNode).get()->AddEdgeToChildNode(std::move(edge));
+                            *(childNode->get())->AddEdgeToParentNode(edge);
+                            *(parentNode->get())->AddEdgeToChildNode(std::move(edge));
                         }
 
                         ////
@@ -201,12 +201,12 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         // search for nodes which have no incoming edges
-        if ((it->get())->GetNumberOfParents() == 0)
+        if (*(it->get())->GetNumberOfParents() == 0)
         {
 
             if (rootNode == nullptr)
             {
-                rootNode = it->get(); // assign current node to root
+                rootNode = *(it->get()); // assign current node to root
             }
             else
             {
