@@ -51,8 +51,11 @@ ChatBot::ChatBot(ChatBot&& source) { // Move constructor
     
     // Handle non-owning references
     this->_chatLogic = source._chatLogic;
+    source._chatLogic = nullptr;
     this->_rootNode = source._rootNode;
+    source._rootNode = nullptr;
     this->_currentNode = source._rootNode;
+    source._currentNode = nullptr;
 
     // Handle owning references
     this->_image = source._image;
@@ -67,8 +70,11 @@ ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
     
     // Handle non-owning references
     this->_chatLogic = source._chatLogic;
+    source._chatLogic = nullptr;
     this->_rootNode = source._rootNode;
+    source._rootNode = nullptr;
     this->_currentNode = source._rootNode;
+    source._currentNode = nullptr;
 
     // Handle owning references
     this->_image = source._image;
