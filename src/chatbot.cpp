@@ -66,7 +66,7 @@ ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
     if (&source == this) {
         return *this;
     }
-    std::cout << "Chatbot Move Assignment Constructor \n";
+    std::cout << "Chatbot Move Assignment Constructor \n" << source._chatLogic;
     
     // Handle non-owning references
     this->_chatLogic = source._chatLogic;
