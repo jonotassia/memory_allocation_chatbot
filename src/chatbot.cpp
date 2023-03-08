@@ -51,7 +51,7 @@ ChatBot::~ChatBot()
 ChatBot::ChatBot(ChatBot&& source) { // Move constructor
     std::cout << "Chatbot Move Constructor \n";
 
-    if (_image != NULL) {
+    if (_image != nullptr) {
         delete _image;
     }
     
@@ -73,7 +73,7 @@ ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
     if (&source == this) {
         return *this;
     }
-    if (_image != NULL) {
+    if (_image != nullptr) {
         delete _image;
     }
 
