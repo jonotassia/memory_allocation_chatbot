@@ -22,10 +22,6 @@ private:
     // proprietary functions
     int ComputeLevenshteinDistance(std::string s1, std::string s2);
 
-    // Restrict copy function as exclusive ownership should always be maintained for some objects
-    ChatBot(ChatBot& source);  // Copy constructor
-    ChatBot &operator=(ChatBot& source);  // Copy Assignment constructor
-
 public:
     // constructors / destructors
     ChatBot();                     // constructor WITHOUT memory allocation
@@ -36,6 +32,10 @@ public:
     ////
     ChatBot(ChatBot&& source);  // Move constructor
     ChatBot &operator=(ChatBot&& source);  // Move assignment constructor
+
+    // Restrict copy function as exclusive ownership should always be maintained for some objects
+    ChatBot(ChatBot& source);  // Copy constructor
+    ChatBot &operator=(ChatBot& source);  // Copy Assignment constructor
 
     ////
     //// EOF STUDENT CODE
