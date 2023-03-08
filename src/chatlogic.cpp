@@ -36,10 +36,10 @@ ChatLogic::~ChatLogic()
     delete _chatBot;
 
     // delete all nodes - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN SMARTPOINTER GOES OUT OF SCOPE
-    // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    // {
-    //     delete it->get();
-    // }
+    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
+    {
+        it->reset();
+    }
 
     // delete all edges - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN NODES ARE DELETED
     // for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
