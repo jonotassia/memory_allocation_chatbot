@@ -50,10 +50,15 @@ ChatBot::~ChatBot()
 
 ChatBot::ChatBot(ChatBot&& source) { // Move constructor
     std::cout << "Chatbot Move Constructor \n";
+
+    if (_image != NULL) {
+        delete _image;
+    }
     
     // Handle non-owning references
     this->_chatLogic = source._chatLogic;
     source._chatLogic = nullptr;
+    _chatLogic->SetChatbotHandle(this);
     this->_rootNode = source._rootNode;
     source._rootNode = nullptr;
     this->_currentNode = source._rootNode;
@@ -61,18 +66,23 @@ ChatBot::ChatBot(ChatBot&& source) { // Move constructor
 
     // Handle owning references
     this->_image = source._image;
-    source._image = nullptr;
+    source._image = NULL;
 }  
 
 ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
     if (&source == this) {
         return *this;
     }
+    if (_image != NULL) {
+        delete _image;
+    }
+
     std::cout << "Chatbot Move Assignment Constructor \n";
     
     // Handle non-owning references
     this->_chatLogic = source._chatLogic;
     source._chatLogic = nullptr;
+    _chatLogic->SetChatbotHandle(this);
     this->_rootNode = source._rootNode;
     source._rootNode = nullptr;
     this->_currentNode = source._rootNode;
@@ -80,7 +90,7 @@ ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
 
     // Handle owning references
     this->_image = source._image;
-    source._image = nullptr;
+    source._image = NULL;
     
     return *this;
 }  
