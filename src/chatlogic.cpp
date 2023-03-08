@@ -217,8 +217,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
     // add chatbot to graph root node
     std::unique_ptr chatbot = std::make_unique<ChatBot>();
-    chatbot->SetChatLogicHandle(this);
-    this->SetChatbotHandle(chatbot.get());
+    // chatbot->SetChatLogicHandle(this);
+    // this->SetChatbotHandle(chatbot.get());
     chatbot->SetRootNode(rootNode);
     rootNode->MoveChatbotHere(std::move(chatbot));
     
