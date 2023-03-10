@@ -89,7 +89,7 @@ ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
 }
 
 
-ChatBot(ChatBot& source) {  // Copy constructor
+ChatBot::ChatBot(ChatBot& source) {  // Copy constructor
     // Handle non-owning references
     this->_chatLogic = source._chatLogic;
     this->_rootNode = source._rootNode;
@@ -100,7 +100,7 @@ ChatBot(ChatBot& source) {  // Copy constructor
     *this->_image = *source._image;
 }
 
-ChatBot &operator=(ChatBot& source) {  // Copy Assignment constructor
+ChatBot& ChatBot::operator=(ChatBot& source) {  // Copy Assignment constructor
     if (&source == this) {
         return *this;
     }
