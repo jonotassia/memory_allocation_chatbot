@@ -17,11 +17,11 @@ ChatLogic::ChatLogic()
     //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
+    // // create instance of chatbot - Removing since no longer responsible for chatbot instance
+    // _chatBot = new ChatBot("../images/chatbot.png");
 
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    // // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    // _chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -36,10 +36,10 @@ ChatLogic::~ChatLogic()
     // delete _chatBot;
 
     // delete all nodes - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN SMARTPOINTER GOES OUT OF SCOPE
-    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    {
-        it->reset();
-    }
+    // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
+    // {
+    //     it->reset();
+    // }
 
     // delete all edges - REMOVED AS THIS CLEANUP WILL HAPPEN WHEN NODES ARE DELETED
     // for (auto it = std::begin(_edges); it != std::end(_edges); ++it)

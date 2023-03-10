@@ -86,6 +86,34 @@ ChatBot& ChatBot::operator=(ChatBot&& source) {  // Move assignment constructor
     source._image = NULL;
     
     return *this;
+}
+
+
+ChatBot(ChatBot& source) {  // Copy constructor
+    // Handle non-owning references
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+    this->_currentNode = source._rootNode;
+
+    // Handle owning references
+    this->_image = new wxBitmap();
+    *this->_image = *source._image;
+}
+
+ChatBot &operator=(ChatBot& source) {  // Copy Assignment constructor
+    if (&source == this) {
+        return *this;
+    }
+    // Handle non-owning references
+    this->_chatLogic = source._chatLogic;
+    this->_rootNode = source._rootNode;
+    this->_currentNode = source._rootNode;
+
+    // Handle owning references
+    this->_image = new wxBitmap();
+    *this->_image = *source._image;
+    
+    return *this;
 }  
 
 ////
